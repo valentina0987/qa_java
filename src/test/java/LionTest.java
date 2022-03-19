@@ -1,27 +1,31 @@
-import com.example.Feline;
 import com.example.Lion;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
+
 import java.util.List;
 import static org.junit.Assert.assertThrows;
 
+@RunWith(MockitoJUnitRunner.class)
 public class LionTest {
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
     }
 
+
     @Mock
-    Feline feline;
+    Lion lion;
 
     @Test
     public void shouldBeCorrectExceptionMessage() throws Exception {
-        Lion lion = new Lion("Самка");
+        Lion li = new Lion("Самец");
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> { throw new IllegalArgumentException("Используйте допустимые значения пола животного - самей или самка"); }
@@ -32,9 +36,8 @@ public class LionTest {
     }
 
     @Test
-    public void shouldBe1Kitten() throws Exception {
-        Mockito.when(feline.getKittens()).thenReturn(1);
-        Lion lion = new Lion("Самец");
+    public void shouldBe1Kitten() {
+        Mockito.when(lion.getKittens()).thenReturn(1);
         int expectedKittenCount = 1;
         int actualKittenCount = lion.getKittens();
         Assert.assertEquals(expectedKittenCount, actualKittenCount);
@@ -42,8 +45,7 @@ public class LionTest {
 
     @Test
     public void shouldBePredatorsFood() throws Exception {
-        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Lion lion = new Lion("Самец");
+        Mockito.when(lion.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
         List<String> actualFood = lion.getFood();
         Assert.assertEquals(expectedFood, actualFood);
