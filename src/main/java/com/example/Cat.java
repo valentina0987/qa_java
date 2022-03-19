@@ -2,9 +2,9 @@ package com.example;
 
 import java.util.List;
 
-public class Cat {
+public class Cat implements Predator {
 
-    Predator predator;
+    private Predator predator;
 
     public Cat(Feline feline) {
         this.predator = feline;
@@ -12,6 +12,10 @@ public class Cat {
 
     public String getSound() {
         return "Мяу";
+    }
+
+    public List<String> eatMeat() throws Exception {
+        return eatMeat();
     }
 
     public List<String> getFood() throws Exception {
