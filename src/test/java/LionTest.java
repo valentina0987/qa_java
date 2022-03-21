@@ -19,11 +19,11 @@ public class LionTest {
 
 
     @Mock
-    Lion lion;
+    Feline feline;
 
     @Test
     public void shouldBeCorrectExceptionMessage() throws Exception {
-        Lion li = new Lion("Самец");
+        Lion li = new Lion("Самец", feline);
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
                 () -> { throw new IllegalArgumentException("Используйте допустимые значения пола животного - самей или самка"); }
@@ -34,18 +34,18 @@ public class LionTest {
     }
 
     @Test
-    public void shouldBe1Kitten() {
-        Mockito.when(lion.getKittens()).thenReturn(1);
+    public void shouldBeOneKitten() {
+        Mockito.when(feline.getKittens()).thenReturn(1);
         int expectedKittenCount = 1;
-        int actualKittenCount = lion.getKittens();
+        int actualKittenCount = feline.getKittens();
         Assert.assertEquals(expectedKittenCount, actualKittenCount);
     }
 
     @Test
     public void shouldBePredatorsFood() throws Exception {
-        Mockito.when(lion.getFood()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
-        List<String> actualFood = lion.getFood();
+        List<String> actualFood = feline.getFood("Хищник");
         Assert.assertEquals(expectedFood, actualFood);
     }
 

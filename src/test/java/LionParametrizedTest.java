@@ -23,7 +23,8 @@ public class LionParametrizedTest {
 
     @Test
     public void shouldBeRightSex() throws Exception{
-        Lion lion = new Lion(sex);
+        Feline feline = new Feline();
+        Lion lion = new Lion(sex, feline);
         Assert.assertEquals(expected, lion.doesHaveMane());
     }
 }
